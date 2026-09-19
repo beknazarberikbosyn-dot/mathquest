@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          GITHUB_ACTIONS: true
+      - run: |
+          rm -rf docs
+          cp -r dist docs
+          touch docs/.nojekyll
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Deploy site to docs/
+          file_pattern: docs/**
