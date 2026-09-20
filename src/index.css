@@ -351,7 +351,7 @@ h1 { font-size: clamp(2.1rem, 4vw, 3.3rem); line-height: 1.05; }
 .mission {
   padding: 0;
   overflow: hidden;
-  max-width: 760px;
+  max-width: 980px;
   width: 100%;
   margin: 0 auto;
   min-width: 0;
@@ -372,6 +372,60 @@ h1 { font-size: clamp(2.1rem, 4vw, 3.3rem); line-height: 1.05; }
 }
 .speech {
   padding: 22px;
+}
+.scene-board {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 16px;
+  align-items: stretch;
+  margin-bottom: 6px;
+}
+.cast {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.hero-sprite {
+  width: 92px;
+  height: auto;
+  filter: drop-shadow(0 12px 0 #0001);
+}
+.cast-name {
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.cast-hi {
+  margin: 4px 0 10px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.cast-talk { min-width: 0; }
+.scene-art {
+  background: #8ecae6;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 2px solid var(--line);
+  min-height: 220px;
+}
+.scene-svg { display: block; width: 100%; height: auto; }
+.scene-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 10px 10px;
+  background: #fff6e8;
+}
+.scene-facts span {
+  background: #161226;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.76rem;
+  border-radius: 999px;
+  padding: 4px 10px;
 }
 .bubble {
   background: #fff;
@@ -502,6 +556,7 @@ h1 { font-size: clamp(2.1rem, 4vw, 3.3rem); line-height: 1.05; }
   .hero-art { min-height: 220px; }
   .world { grid-template-columns: repeat(2, 1fr); }
   .hero-copy { padding: 26px 20px; }
+  .scene-board { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {

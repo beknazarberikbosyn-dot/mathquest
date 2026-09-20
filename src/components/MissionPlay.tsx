@@ -1,7 +1,10 @@
 import { useMemo, useState, type CSSProperties } from 'react'
+import { HeroSprite } from './HeroSprite'
+import { SceneArt } from './SceneArt'
 import { missionById } from '../data/curriculum'
 import { profession } from '../data/professions'
 import { useI18n } from '../i18n'
+import { resolveScene, storyFacts } from '../lib/scene'
 import { closeEnough, parseAnswer } from '../lib/math'
 import type { Save } from '../types'
 
@@ -16,7 +19,7 @@ export function MissionPlay({
   onExit: () => void
   onFinish: (stars: number, xp: number) => void
 }) {
-  const { t, tx } = useI18n()
+  const { t, tx, lang } = useI18n()
   const found = useMemo(() => missionById(missionId), [missionId])
   const [step, setStep] = useState(0)
   const [raw, setRaw] = useState('')
@@ -32,6 +35,9 @@ export function MissionPlay({
   const job = profession(mission.profession)
   const s = mission.steps[step]
   const last = step === mission.steps.length - 1
+  const story = tx(s.story)
+  const scene = resolveScene(mission.profession, mission.id, story, s.visual)
+  const facts = storyFacts(story)
 
   const check = () => {
     let good = false
@@ -95,31 +101,29 @@ export function MissionPlay({
           </div>
         ) : (
           <div className="speech">
-            <div style={{ fontWeight: 800, marginBottom: 8 }}>
-              {t('stepOf', { a: step + 1, b: mission.steps.length })}
+            <div className="scene-board">
+              <div className="cast">
+                <HeroSprite profession={mission.profession} hue={job.hue} />
+                <div className="cast-talk">
+                  <div className="cast-name">{tx(job.name)}</div>
+                  <p className="cast-hi">
+                    {save.name
+                      ? t('castHiNamed', { name: save.name, job: tx(job.name) })
+                      : t('castHi', { job: tx(job.name) })}{' '}
+                    {t('castLook')}
+                  </p>
+                  <div className="bubble">{story}</div>
+                </div>
+              </div>
+              <SceneArt
+                scene={scene}
+                hue={job.hue}
+                visual={s.visual}
+                facts={facts}
+                missionId={mission.id}
+                lang={lang}
+              />
             </div>
-            <div className="bubble">{tx(s.story)}</div>
-            {s.visual?.kind === 'items' && s.visual.count ? (
-              <div className="stage">
-                {Array.from({ length: Math.min(s.visual.count, 24) }, (_, i) => (
-                  <span className="dot-item" key={i}>
-                    {s.visual?.emoji ?? '⭐'}
-                  </span>
-                ))}
-              </div>
-            ) : null}
-            {s.visual?.kind === 'coins' ? (
-              <div className="stage">
-                {Array.from({ length: 8 }, (_, i) => (
-                  <span className="dot-item" key={i}>
-                    🪙
-                  </span>
-                ))}
-              </div>
-            ) : null}
-            {s.visual?.kind === 'shapes' && s.visual.shapes
-              ? s.visual.shapes.map((sh, i) => <div className={`shape ${sh}`} key={i} />)
-              : null}
             <h3 className="q">{tx(s.question)}</h3>
             {s.answer.kind === 'choice' ? (
               <div className="choices">

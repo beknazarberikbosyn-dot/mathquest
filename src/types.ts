@@ -7,6 +7,39 @@ export type AnswerKind = 'number' | 'choice'
 
 export type VisualKind = 'none' | 'items' | 'coins' | 'shapes' | 'bars'
 
+export type SceneKind =
+  | 'building'
+  | 'ramp'
+  | 'roof'
+  | 'lighthouse'
+  | 'shadow'
+  | 'shop'
+  | 'kitchen'
+  | 'clinic'
+  | 'farm'
+  | 'road'
+  | 'pool'
+  | 'plan'
+  | 'bridge'
+  | 'field'
+  | 'lab'
+  | 'sea'
+  | 'sky'
+  | 'bank'
+  | 'studio'
+  | 'yurt'
+
+export type SceneMark = {
+  height?: Text
+  width?: Text
+  depth?: Text
+  hyp?: Text
+  opp?: Text
+  adj?: Text
+  angle?: Text
+  scale?: Text
+}
+
 export type Step = {
   story: Text
   question: Text
@@ -14,10 +47,12 @@ export type Step = {
   explain: Text
   unit?: Text
   visual?: {
-    kind: VisualKind
+    kind?: VisualKind
+    scene?: SceneKind
     emoji?: string
     count?: number
     shapes?: Array<'circle' | 'square' | 'triangle' | 'rect'>
+    marks?: SceneMark
   }
   answer:
     | { kind: 'number'; value: number; tolerance?: number }

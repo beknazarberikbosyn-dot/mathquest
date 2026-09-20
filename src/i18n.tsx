@@ -58,6 +58,13 @@ const UI = {
   great: tx('Миссия выполнена', 'Миссия орындалды', 'Mission complete'),
   gained: tx('+{n} опыта', '+{n} тәжірибе', '+{n} XP'),
   worldTitle: tx('Архипелаг знаний', 'Білім архипелагы', 'Archipelago of knowledge'),
+  castHiNamed: tx('Привет, {name}! Я {job}.', 'Сәлем, {name}! Мен {job}.', "Hi, {name}! I'm your {job}."),
+  castHi: tx('Привет! Я {job}.', 'Сәлем! Мен {job}.', "Hi! I'm your {job}."),
+  castLook: tx(
+    'Смотри на картинку — на ней все данные задачи.',
+    'Суретке қара — есептің барлық дерегі сонда.',
+    'Look at the picture — every number from the task is there.',
+  ),
 } as const
 
 function tx(ru: string, kk: string, en: string): Text {

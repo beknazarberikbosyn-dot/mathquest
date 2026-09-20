@@ -115,11 +115,12 @@ export const GRADES_5_8: Grade[] = [
         [
           m('g5-builder-pool', 'builder', ['Бассейн во дворе', 'Ауладағы бассейн', 'A backyard pool'], [
             {
-              story: tx('Бассейн 5 м × 2 м × 1.5 м.', 'Бассейн 5 м × 2 м × 1.5 м.', 'The pool is 5 m × 2 m × 1.5 m.'),
+              story: tx('Вот бассейн: длина 5 м, ширина 2 м, глубина 1.5 м. Объём — произведение трёх рёбер.', 'Міне бассейн: ұзындығы 5 м, ені 2 м, тереңдігі 1.5 м. Көлем — үш қырдың көбейтіндісі.', 'Here is the pool: 5 m long, 2 m wide, 1.5 m deep. Volume is the product of the three edges.'),
               question: tx('Объём в м³?', 'Көлем м³?', 'Volume in m³?'),
               hint: tx('Длина × ширина × глубина.', 'Ұзындық × ен × тереңдік.'),
               explain: tx('Строитель заказывает воду и бетон по объёму, не по площади дна.', 'Құрылысшы су мен бетонды түп ауданы емес, көлем бойынша алады.', 'Builders order water and concrete by volume, not floor area.'),
               unit: tx('м³', 'м³', 'm³'),
+              visual: { scene: 'pool', marks: { width: tx('5 м', '5 м', '5 m'), height: tx('2 м', '2 м', '2 m'), depth: tx('1.5 м', '1.5 м', '1.5 m') } },
               answer: n(15),
             },
             {
@@ -225,11 +226,12 @@ export const GRADES_5_8: Grade[] = [
           ]),
           m('g6-architect-map', 'architect', ['План школы', 'Мектеп жоспары', 'School plan'], [
             {
-              story: tx('Масштаб 1:200. На плане коридор 8 см.', 'Масштаб 1:200. Жоспарда дәліз 8 см.', 'Scale 1:200. On the plan the corridor is 8 cm.'),
+              story: tx('На чертеже масштаб 1:200. Коридор на бумаге — 8 см. В жизни он в 200 раз длиннее.', 'Сызбада масштаб 1:200. Қағаздағы дәліз — 8 см. Өмірде ол 200 есе ұзын.', 'The drawing scale is 1:200. The corridor on paper is 8 cm. In life it is 200 times longer.'),
               question: tx('Какова реальная длина в метрах? (8 см × 200 = ? см, потом в метры)', 'Нақты ұзындығы неше метр?', 'What is the real length in metres?'),
               hint: tx('8 × 200 = 1600 см = 16 м.', '8 × 200 = 1600 см = 16 м.'),
               explain: tx('Архитектор читает масштаб как отношение «на бумаге : в жизни».', 'Сәулетші масштабты «қағазда : өмірде» қатынасы деп оқиды.', 'Architects read scale as the ratio “on paper : in life”.'),
               unit: tx('м', 'м', 'm'),
+              visual: { scene: 'plan', marks: { scale: tx('1:200', '1:200', '1:200'), width: tx('8 см', '8 см', '8 cm') } },
               answer: n(16),
             },
             {
@@ -427,11 +429,12 @@ export const GRADES_5_8: Grade[] = [
         [
           m('g7-builder-roof', 'builder', ['Скат крыши', 'Шатыр еңісі', 'A roof pitch'], [
             {
-              story: tx('Два угла при основании равнобедренного фронтона по 35°. Вершина — неизвестна.', 'Теңбүйірлі фронтон табанындағы екі бұрыш 35°. Төбесі белгісіз.', 'Two base angles of an isosceles gable are 35° each. The top is unknown.'),
+              story: tx('Смотри на фронтон дома: два угла у основания по 35°. Третий угол — у конька, наверху.', 'Үй фронтонына қара: табандағы екі бұрыш 35°. Үшінші бұрыш — жотада, үстінде.', 'Look at the gable: two base angles are 35° each. The third angle is at the ridge, on top.'),
               question: tx('Угол у конька? Сумма углов треугольника 180°.', 'Жота бұрышы? Үшбұрыш бұрыштарының қосындысы 180°.', 'Ridge angle? Triangle angles sum to 180°.'),
               hint: tx('180 − 35 − 35.', '180 − 35 − 35.'),
               explain: tx('Кровельщик закладывает угол, чтобы снег сходил и стропила сошлись.', 'Шатыршы қар сырғитын және стропила түйісетін бұрышты қояды.', 'Roofers set the angle so snow slides and rafters meet.'),
               unit: tx('°', '°', '°'),
+              visual: { scene: 'roof', marks: { angle: tx('?', '?', '?'), width: tx('35° + 35°', '35° + 35°', '35° + 35°') } },
               answer: n(110),
             },
             {
@@ -559,11 +562,12 @@ export const GRADES_5_8: Grade[] = [
         [
           m('g8-electrician-ladder', 'electrician', ['Лестница к фонарю', 'Шамға баспалдақ', 'Ladder to a lamp'], [
             {
-              story: tx('Стена 4 м, основание лестницы в 3 м от стены. Лестница — гипотенуза.', 'Қабырға 4 м, баспалдақ табаны қабырғадан 3 м. Баспалдақ — гипотенуза.', 'Wall 4 m, ladder base 3 m from the wall. The ladder is the hypotenuse.'),
+              story: tx('Стена 4 м, лестница стоит в 3 м от стены. Сама лестница — гипотенуза прямоугольного треугольника.', 'Қабырға 4 м, баспалдақ қабырғадан 3 м тұр. Баспалдақтың өзі — тікбұрышты үшбұрыштың гипотенузасы.', 'The wall is 4 m, the ladder stands 3 m from the wall. The ladder itself is the hypotenuse of a right triangle.'),
               question: tx('Длина лестницы в метрах?', 'Баспалдақ ұзындығы метрмен?', 'Ladder length in metres?'),
               hint: tx('3² + 4² = c². Знакомый треугольник 3-4-5.', '3² + 4² = c². Таныс 3-4-5 үшбұрышы.'),
               explain: tx('Электрик подбирает лестницу по Пифагору, чтобы она не упала и достала.', 'Электрик баспалдақтың құламауы және жетуі үшін Пифагормен таңдайды.', 'Electricians size a ladder with Pythagoras so it reaches and does not slip.'),
               unit: tx('м', 'м', 'm'),
+              visual: { scene: 'ramp', marks: { opp: tx('4 м', '4 м', '4 m'), adj: tx('3 м', '3 м', '3 m'), hyp: tx('? м', '? м', '? m'), angle: tx('90°', '90°', '90°') } },
               answer: n(5),
             },
             {
@@ -660,11 +664,12 @@ export const GRADES_5_8: Grade[] = [
           ]),
           m('g8-architect-yurt', 'architect', ['Юрта в этноауле', 'Этноауылдағы киіз үй', 'A yurt in an ethno village'], [
             {
-              story: tx('Шаңырак — круг диаметром 3 м. Площадь пола юрты? r=1.5, π=3.14', 'Шаңырақ — диаметрі 3 м шеңбер. Киіз үй еденінің ауданы?', 'The shanyrak is a circle 3 m across. Yurt floor area? r=1.5, π=3.14'),
+              story: tx('Смотри на юрту: шанырак — круг диаметром 3 м, значит радиус пола 1.5 м. Площадь круга — πr², π ≈ 3.14.', 'Киіз үйге қара: шаңырақ — диаметрі 3 м шеңбер, еден радиусы 1.5 м. Шеңбер ауданы — πr², π ≈ 3.14.', 'Look at the yurt: the shanyrak is a 3 m circle, so the floor radius is 1.5 m. Circle area is πr², π ≈ 3.14.'),
               question: tx('м² пола', 'Еден м²', 'm² of floor'),
               hint: tx('3.14 × 1.5² = 3.14 × 2.25.', '3.14 × 1.5² = 3.14 × 2.25.'),
               explain: tx('Архитектор считает круглый пол, чтобы заказать войлок и доски.', 'Сәулетші киіз бен тақтайға тапсырыс беру үшін дөңгелек еденді санайды.', 'Architects compute a round floor to order felt and boards.'),
               unit: tx('м²', 'м²', 'm²'),
+              visual: { scene: 'yurt', marks: { width: tx('Ø 3 м', 'Ø 3 м', 'Ø 3 m') } },
               answer: n(7.065, 0.05),
             },
             {

@@ -115,11 +115,11 @@ export const GRADES_1_4: Grade[] = [
         [
           m('g1-architect-windows', 'architect', ['Окна нового дома', 'Жаңа үйдің терезелері', 'Windows of a new house'], [
             {
-              story: tx('Архитектор рисует окно: все стороны равны, углов четыре.', 'Сәулетші терезе сызады: барлық қабырғасы тең, төрт бұрышы бар.', 'An architect draws a window: all sides equal, four corners.'),
+              story: tx('Смотри на дом: я рисую окно, у которого все стороны равны и углов четыре.', 'Үйге қара: мен барлық қабырғасы тең, төрт бұрышы бар терезе сызамын.', 'Look at the house: I am drawing a window with four equal sides and four corners.'),
               question: tx('Как называется эта фигура?', 'Бұл пішін қалай аталады?', 'What is this shape called?'),
               hint: tx('Похожа на плитку шоколада.', 'Шоколад плиткасына ұқсайды.', 'It looks like a chocolate square.'),
               explain: tx('Архитекторы называют фигуры, чтобы строители поняли чертёж.', 'Сәулетшілер құрылысшылар сызбаны түсінсін деп пішінді атайды.', 'Architects name shapes so builders can read the plan.'),
-              visual: { kind: 'shapes', shapes: ['square'] },
+              visual: { kind: 'shapes', scene: 'building', shapes: ['square'] },
               answer: {
                 kind: 'choice',
                 correct: 1,
@@ -131,11 +131,11 @@ export const GRADES_1_4: Grade[] = [
               },
             },
             {
-              story: tx('Дверь дома сверху закруглена, как солнце.', 'Үй есігінің үстіңгі жағы күндей дөңгелек.', 'The top of the door is rounded like the sun.'),
+              story: tx('А верх двери закруглён, как солнце и шанырак юрты — без углов.', 'Есіктің үсті күн мен киіз үй шаңырағындай дөңгелек — бұрышы жоқ.', 'The top of the door is rounded like the sun and a yurt shanyrak — no corners.'),
               question: tx('Какая фигура похожа на солнце и колесо юрты?', 'Күн мен киіз үй дөңгелегіне қандай пішін ұқсайды?', 'Which shape is like the sun and a yurt wheel?'),
               hint: tx('У неё нет углов.', 'Оның бұрышы жоқ.', 'It has no corners.'),
               explain: tx('Круг используют в куполах, колёсах и казахском шаныраке.', 'Шеңбер күмбез, дөңгелек және қазақтың шаңырағында қолданылады.', 'Circles appear in domes, wheels and the Kazakh shanyrak.'),
-              visual: { kind: 'shapes', shapes: ['circle'] },
+              visual: { kind: 'shapes', scene: 'building', shapes: ['circle'] },
               answer: {
                 kind: 'choice',
                 correct: 0,
@@ -482,11 +482,12 @@ export const GRADES_1_4: Grade[] = [
         [
           m('g3-gardener-fence', 'gardener', ['Забор школьного сада', 'Мектеп бағының қоршауы', 'School garden fence'], [
             {
-              story: tx('Грядка 6 м в длину и 4 м в ширину. Нужен забор вокруг.', 'Қатар 6 м ұзын, 4 м енді. Айналасына қоршау керек.', 'A bed is 6 m long and 4 m wide. It needs a fence around it.'),
+              story: tx('Вот грядка: 6 м в длину и 4 м в ширину. Забор идёт вокруг, по краю.', 'Міне қатар: ұзындығы 6 м, ені 4 м. Қоршау жиекпен айналады.', 'Here is the bed: 6 m long and 4 m wide. The fence runs around the edge.'),
               question: tx('Какой длины забор? Периметр прямоугольника.', 'Қоршау қандай ұзындықта? Тіктөртбұрыш периметрі.', 'How long is the fence? Rectangle perimeter.'),
               hint: tx('(6 + 4) × 2.', '(6 + 4) × 2.'),
               explain: tx('Периметр — путь вдоль края. Садовник покупает сетку по периметру, не по площади.', 'Периметр — жиек бойымен жол. Бағбан торды аудан бойынша емес, периметр бойынша алады.', 'Perimeter is the walk around the edge. Gardeners buy mesh by perimeter, not area.'),
               unit: tx('м', 'м', 'm'),
+              visual: { scene: 'farm', marks: { width: tx('6 м', '6 м', '6 m'), height: tx('4 м', '4 м', '4 m') } },
               answer: n(20),
             },
             {
@@ -655,11 +656,12 @@ export const GRADES_1_4: Grade[] = [
         [
           m('g4-builder-tiles', 'builder', ['Плитка на кухне', 'Ас үйдегі плитка', 'Kitchen tiles'], [
             {
-              story: tx('Стена 3 м на 2 м. Нужно закрыть плиткой.', 'Қабырға 3 м × 2 м. Плиткамен жабу керек.', 'A wall is 3 m by 2 m. It needs tiles.'),
+              story: tx('Смотри на стену кухни: 3 м в ширину и 2 м в высоту. Её нужно закрыть плиткой.', 'Ас үй қабырғасына қара: ені 3 м, биіктігі 2 м. Оны плиткамен жабу керек.', 'Look at the kitchen wall: 3 m wide and 2 m high. It needs tiles.'),
               question: tx('Какая площадь стены в м²?', 'Қабырға ауданы қандай (м²)?', 'What is the wall area in m²?'),
               hint: tx('3 × 2.', '3 × 2.'),
               explain: tx('Площадь прямоугольника — длина × ширина. Строитель заказывает плитку в квадратных метрах.', 'Тіктөртбұрыш ауданы — ұзындық × ен. Құрылысшы плитканы шаршы метрмен алады.', 'Rectangle area is length × width. Builders order tiles in square metres.'),
               unit: tx('м²', 'м²', 'm²'),
+              visual: { scene: 'building', marks: { width: tx('3 м', '3 м', '3 m'), height: tx('2 м', '2 м', '2 m') } },
               answer: n(6),
             },
             {
