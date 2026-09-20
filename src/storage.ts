@@ -1,4 +1,4 @@
-import type { Lang, Save } from './types'
+import type { CoachState, Lang, Save } from './types'
 
 const KEY = 'mathquest-save-v1'
 
@@ -13,6 +13,18 @@ export function todayStamp() {
   return new Date().toISOString().slice(0, 10)
 }
 
+export function emptyCoach(): CoachState {
+  return {
+    lastGrade: 1,
+    difficulty: {},
+    skills: {},
+    attempts: [],
+    tips: [],
+    unreadTips: 0,
+    solved: 0,
+  }
+}
+
 export function emptySave(): Save {
   return {
     name: '',
@@ -23,6 +35,7 @@ export function emptySave(): Save {
     lastDay: '',
     stars: {},
     attempts: {},
+    coach: emptyCoach(),
   }
 }
 
@@ -30,7 +43,12 @@ export function loadSave(): Save {
   try {
     const raw = localStorage.getItem(KEY)
     if (!raw) return emptySave()
-    return { ...emptySave(), ...(JSON.parse(raw) as Partial<Save>) }
+    const parsed = JSON.parse(raw) as Partial<Save>
+    return {
+      ...emptySave(),
+      ...parsed,
+      coach: { ...emptyCoach(), ...parsed.coach },
+    }
   } catch {
     return emptySave()
   }

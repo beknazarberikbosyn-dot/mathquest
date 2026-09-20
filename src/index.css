@@ -138,6 +138,25 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
   font-weight: 800;
   white-space: nowrap;
   flex-shrink: 0;
+  position: relative;
+}
+.ghost.on {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: transparent;
+}
+.nav-dot {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #fff;
+  font-size: 0.72rem;
+  vertical-align: 1px;
 }
 
 .wrap {
@@ -540,6 +559,7 @@ h1 { font-size: clamp(2.1rem, 4vw, 3.3rem); line-height: 1.05; }
   border: 1px solid var(--line);
   font-weight: 800;
 }
+a.chip { text-decoration: none; color: inherit; }
 
 .warn { color: var(--coral); font-weight: 800; min-height: 1.2em; }
 
@@ -551,12 +571,51 @@ h1 { font-size: clamp(2.1rem, 4vw, 3.3rem); line-height: 1.05; }
   text-decoration: underline;
 }
 
+.coach-panel { padding: 22px; }
+.coach-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.coach-toolbar .chip input { margin-right: 6px; }
+.coach-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.coach-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 18px 20px;
+}
+.skills-row, .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.tip-card a { font-weight: 800; color: var(--jade); }
+.wiki-extract {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: #16122608;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 14px 14px 0;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
 @media (max-width: 860px) {
   .hero { grid-template-columns: 1fr; }
   .hero-art { min-height: 220px; }
   .world { grid-template-columns: repeat(2, 1fr); }
   .hero-copy { padding: 26px 20px; }
   .scene-board { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .coach-cta { flex-direction: column; align-items: stretch; }
 }
 
 @media (max-width: 520px) {

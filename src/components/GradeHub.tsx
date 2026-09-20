@@ -7,10 +7,12 @@ export function GradeHub({
   save,
   grade,
   onPlay,
+  onCoach,
 }: {
   save: Save
   grade: number
   onPlay: (missionId: string) => void
+  onCoach: () => void
 }) {
   const { t, tx } = useI18n()
   const g = gradeByNumber(grade)
@@ -24,6 +26,15 @@ export function GradeHub({
         </h2>
         <p>{t('topics')}</p>
       </div>
+      <section className="panel coach-cta">
+        <div>
+          <h3>{t('coach')}</h3>
+          <p className="lede">{t('coachTag')}</p>
+        </div>
+        <button className="cta" onClick={onCoach}>
+          {t('gradePractice')}
+        </button>
+      </section>
       <div className="topics">
         {g.topics.map((topic) => (
           <article key={topic.id} className="panel topic">

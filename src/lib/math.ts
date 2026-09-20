@@ -14,3 +14,18 @@ export function parseAnswer(raw: string): number | null {
 export function closeEnough(a: number, b: number, tolerance = 0.01) {
   return Math.abs(a - b) <= tolerance
 }
+
+export function gcd(a: number, b: number): number {
+  let x = Math.abs(Math.round(a))
+  let y = Math.abs(Math.round(b))
+  while (y) {
+    const t = y
+    y = x % y
+    x = t
+  }
+  return x || 1
+}
+
+export function clamp(n: number, lo: number, hi: number) {
+  return Math.min(hi, Math.max(lo, n))
+}

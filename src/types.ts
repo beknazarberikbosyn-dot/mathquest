@@ -1,7 +1,7 @@
 export type Lang = 'ru' | 'kk' | 'en'
 export type Text = Record<Lang, string>
 
-export type View = 'home' | 'world' | 'grade' | 'mission' | 'profile'
+export type View = 'home' | 'world' | 'grade' | 'mission' | 'profile' | 'coach' | 'tips'
 
 export type AnswerKind = 'number' | 'choice'
 
@@ -82,6 +82,47 @@ export type Grade = {
   topics: Topic[]
 }
 
+export type CoachSkillStat = {
+  rating: number
+  seen: number
+  correct: number
+  wrong: number
+  streak: number
+}
+
+export type CoachAttempt = {
+  skill: string
+  grade: number
+  difficulty: number
+  correct: boolean
+  mistakes: number
+  hint: boolean
+  source: 'bank' | 'web'
+  at: string
+}
+
+export type CoachTip = {
+  id: string
+  skill: string
+  title: Text
+  body: Text
+  drill: Text
+  wikiTitle?: string
+  wikiExtract?: string
+  wikiUrl?: string
+  createdAt: string
+}
+
+export type CoachState = {
+  lastGrade: number
+  difficulty: Record<string, number>
+  skills: Record<string, CoachSkillStat>
+  attempts: CoachAttempt[]
+  tips: CoachTip[]
+  unreadTips: number
+  solved: number
+}
+
 export type Save = {
   name: string
   avatar: number
@@ -91,6 +132,7 @@ export type Save = {
   lastDay: string
   stars: Record<string, number>
   attempts: Record<string, number>
+  coach: CoachState
 }
 
 export const tx = (ru: string, kk: string, en = ru): Text => ({ ru, kk, en })

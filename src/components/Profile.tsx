@@ -46,6 +46,10 @@ export function Profile({
               {done}/{totalMissions}
             </b>
           </div>
+          <div className="stat">
+            <span>{t('coach')}</span>
+            <b>{save.coach.solved}</b>
+          </div>
         </div>
         <h3 style={{ marginTop: 22 }}>{t('badges')}</h3>
         {jobs.length === 0 ? (

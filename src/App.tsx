@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Coach } from './components/Coach'
 import { GradeHub } from './components/GradeHub'
 import { Home } from './components/Home'
 import { MissionPlay } from './components/MissionPlay'
 import { Profile } from './components/Profile'
+import { Tips } from './components/Tips'
 import { Topbar, go } from './components/Chrome'
 import { World } from './components/World'
 import { missionById } from './data/curriculum'
@@ -19,10 +21,16 @@ export default function App({
 }) {
   const { t } = useI18n()
   const [view, setView] = useState<View>(save.name ? 'world' : 'home')
-  const [grade, setGrade] = useState(1)
+  const [grade, setGrade] = useState(save.coach.lastGrade || 1)
   const [missionId, setMissionId] = useState<string | null>(null)
+  const [focusSkill, setFocusSkill] = useState<string | null>(null)
 
   const home = () => go(setView, save.name ? 'world' : 'home')
+  const openCoach = (n = grade, skill: string | null = null) => {
+    setGrade(n)
+    setFocusSkill(skill)
+    go(setView, 'coach')
+  }
 
   return (
     <div className="app">
@@ -37,6 +45,13 @@ export default function App({
                   {t('home')}
                 </button>
               ) : null}
+              <button className={view === 'coach' ? 'ghost on' : 'ghost'} onClick={() => openCoach()}>
+                {t('coach')}
+              </button>
+              <button className={view === 'tips' ? 'ghost on' : 'ghost'} onClick={() => go(setView, 'tips')}>
+                {t('tips')}
+                {save.coach.unreadTips ? <span className="nav-dot">{save.coach.unreadTips}</span> : null}
+              </button>
               <button className="ghost" onClick={() => go(setView, 'profile')}>
                 {t('profile')}
               </button>
@@ -73,6 +88,7 @@ export default function App({
             setMissionId(id)
             go(setView, 'mission')
           }}
+          onCoach={() => openCoach(grade)}
         />
       ) : null}
 
@@ -98,6 +114,29 @@ export default function App({
               })
             })
           }}
+        />
+      ) : null}
+
+      {view === 'coach' ? (
+        <Coach
+          save={save}
+          setSave={setSave}
+          grade={grade}
+          onGrade={(n) => {
+            setGrade(n)
+            setFocusSkill(null)
+            setSave((s) => ({ ...s, coach: { ...s.coach, lastGrade: n } }))
+          }}
+          focusSkill={focusSkill}
+          onOpenTips={() => go(setView, 'tips')}
+        />
+      ) : null}
+
+      {view === 'tips' ? (
+        <Tips
+          save={save}
+          setSave={setSave}
+          onPractice={(n, skill) => openCoach(n, skill)}
         />
       ) : null}
 
